@@ -22,9 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void getConnectivity() {
     // subscription =
-     InternetConnection()
-        .onStatusChange
-        .listen((InternetStatus status) async {
+    InternetConnection().onStatusChange.listen((InternetStatus status) async {
       // isDeviceConnected = await InternetConnection().hasInternetAccess;
       if (status == InternetStatus.disconnected) {
         showBoxDialog();
@@ -68,9 +66,17 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            'You have pushed the button this many times:',
+          Center(
+            child: Text(
+              'Check of internet Connection',
+              style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500),
+            ),
           ),
         ],
       ),
