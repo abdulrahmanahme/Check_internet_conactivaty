@@ -6,7 +6,7 @@ final GlobalKey<NavigatorState> scaffoldKey = GlobalKey<NavigatorState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  AppConnectivity.getConnectivity(scaffoldKey);
+  AppConnectivity.checkInternetConnection(scaffoldKey);
   runApp(const MyApp());
 }
 

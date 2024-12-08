@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'dart:developer';
+import 'package:check_internet2/core/secend_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -35,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return showCupertinoDialog(
         context: context,
         builder: (context) => CupertinoAlertDialog(
-              title: const Text('No Connction'),
+              title: Text(dotenv.env['FOO']!),
               content: const Text('Please check your internet Connction'),
               actions: [
                 TextButton(
@@ -64,18 +66,26 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
-            child: Text(
-              'Check of internet Connection',
-              style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ScendScreen()));
+              },
+              child: Text(
+                dotenv.env['FOO']!,
+                style: const TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500),
+              ),
             ),
           ),
         ],

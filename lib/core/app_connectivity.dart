@@ -1,22 +1,22 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 
 class AppConnectivity {
-
-  static void getConnectivity(GlobalKey<NavigatorState> scaffoldKey) {
+  
+  /// check Internet Connection Status
+  static void checkInternetConnection(GlobalKey<NavigatorState> scaffoldKey) {
     InternetConnection().onStatusChange.listen((InternetStatus status) async {
-      // isDeviceConnected = await InternetConnection().hasInternetAccess;
       if (status == InternetStatus.disconnected) {
-        log('dsssssssssss');
         showSnackBar(scaffoldKey.currentContext);
       }
     });
   }
 
+  /// Show Snack Bar When not connection
   static void showSnackBar(context) {
-    // Navigator.push(context,MaterialPageRoute(builder:(context)=>const NoConnectionScreen()));
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: const Text('Please check internet connection'),
